@@ -1,0 +1,1 @@
+ERROR: variable 'DOC_FORMAT' not set!
