@@ -7,6 +7,7 @@ DOC_HEADER_CODE="# Multidoc.sh Document\n"
 DOC_SUBHEADER_CODE="## You $(date +%Y)\n\n"
 DOC_CONTENTS=""
 DOC_BODY=""
+DOC_COUNTER=0
 
 # -- FUNCTIONS PT.1: Abstraction Layer --
 
@@ -53,6 +54,41 @@ doc_h6()
 doc_p()
 {
 	doc_p_$DOC_FORMAT $@
+}
+
+doc_quote()
+{
+	doc_quote_$DOC_FORMAT $@
+}
+
+doc_nlist()
+{
+	doc_nlist_$DOC_FORMAT $@
+}
+
+doc_list()
+{
+	doc_list_$DOC_FORMAT $@
+}
+
+doc_code()
+{
+	doc_code_$DOC_FORMAT $@
+}
+
+doc_splitter()
+{
+	doc_splitter_$DOC_FORMAT $@
+}
+
+doc_link()
+{
+	doc_link_$DOC_FORMAT $@
+}
+
+doc_image()
+{
+	doc_image_$DOC_FORMAT $@
 }
 
 doc_inl_b()
@@ -135,6 +171,55 @@ doc_p_md()
 	DOC_BODY="${DOC_BODY}${*}\n\n"
 }
 
+doc_quote_md()
+{
+	DOC_BODY="${DOC_BODY}${DOC_INDENT}> ${*}\n\n"
+}
+
+doc_nlist_md()
+{
+	DOC_COUNTER=0
+	
+	for i in $@
+	do
+		DOC_COUNTER=$DOC_COUNTER+1
+		DOC_BODY="${DOC_BODY}${DOC_INDENT}${DOC_COUNTER}. ${i}\n"
+	done
+
+	DOC_BODY="${DOC_BODY}${DOC_INDENT}\n"
+}
+
+doc_list_md()
+{
+	for i in $@
+	do
+		DOC_BODY="${DOC_BODY}${DOC_INDENT}- ${i}\n"
+	done
+
+	DOC_BODY="${DOC_BODY}${DOC_INDENT}\n"
+}
+
+doc_code_md()
+{
+	DOC_BODY="${DOC_BODY}${DOC_INDENT}\`${*}\`\n\n"
+}
+
+doc_splitter_md()
+{
+	DOC_BODY="${DOC_BODY}${DOC_INDENT}--------\n\n"
+}
+
+doc_link_md()
+{
+	DOC_BODY="${DOC_BODY}${DOC_INDENT}\[${1}\]\(${2}\)\n\n"
+
+}
+
+doc_image_md()
+{
+	DOC_BODY="${DOC_BODY}${DOC_INDENT}!\[${1}\]\(${2}\)\n\n"
+}
+
 doc_inl_b_md()
 {
 	printf "**${*}**"
@@ -151,7 +236,8 @@ doc_gen_md()
 
 	printf "${DOC_HEADER_CODE}${DOC_SUBHEADER_CODE}\n\n\n\n"
 
-	if [[ "${DOC_CONTENTS_ENABLE}" -ne "" ]]; then
+	if [ -n "${DOC_CONTENTS_ENABLE}" ]
+	then
 		printf "${DOC_CONTENTS}\n"
 	fi
 	
@@ -160,7 +246,8 @@ doc_gen_md()
 
 # -- CHECKS & PREPARATION --
 
-if [[ "${DOC_FORMAT}" == "" ]]; then
+if [ "${DOC_FORMAT}" = "" ]
+then
 	printf "ERROR: variable 'DOC_FORMAT' not set!\n\n"
 	printf "Accepted values for DOC_FORMAT:\n"
 	printf "\055 'md'"
