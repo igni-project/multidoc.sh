@@ -16,4 +16,24 @@ doc_h6 "and $(doc_inl_b this) is a size 6 heading."
 
 doc_p 'Right here is a paragraph.'
 
+doc_nlist_start 
+doc_nlist_entry "numbered list item 1"
+doc_nlist_entry "numbered list item 2"
+doc_nlist_entry "numbered list item 3"
+doc_nlist_end
+
+doc_list_start 
+doc_list_entry "bullet list item 1"
+doc_list_entry "bullet list item 2"
+doc_list_entry "bullet list item 3"
+doc_list_end
+
+doc_splitter
+
+DOC_LINK_TEXT="Example link"
+doc_link "https://example.com/"
+
+DOC_LINK_TEXT="Igni Logo"
+doc_image "https://avatars.githubusercontent.com/u/181029195"
+
 doc_gen

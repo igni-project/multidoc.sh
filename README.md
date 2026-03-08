@@ -4,7 +4,7 @@ Multidoc.sh is a collection of shell scripts that ease conversion between markup
 
 ### Prerequisites
 
-You need a POSIX compliant shell to run these scripts.
+You need a POSIX compliant shell to run these scripts. On Windows, Git Bash will suffice.
 
 ### Using Mutlidoc.sh
 
