@@ -42,3 +42,6 @@ Right here is a paragraph.
 
 !\[Igni Logo\]\(https://avatars.githubusercontent.com/u/181029195\)
 
+| Column 1 | Column 2 | Column 3 | 
+--------
+| Entry 1 | Entry 2 | Entry 3 | 

@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.4
+
+* Added tables
+* Began phasing out the 'doc_inl_' function prefix in favour of 'doc_'
+
 ## v0.3
 
 * Re-formatted FUNCTIONS PT.1 of nofrills.sh

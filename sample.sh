@@ -36,4 +36,14 @@ doc_link "https://example.com/"
 DOC_LINK_TEXT="Igni Logo"
 doc_image "https://avatars.githubusercontent.com/u/181029195"
 
+doc_table_start
+doc_table_cell "Column 1"
+doc_table_cell "Column 2"
+doc_table_cell "Column 3"
+doc_table_new_row
+doc_table_cell "Entry 1"
+doc_table_cell "Entry 2"
+doc_table_cell "Entry 3"
+doc_table_end
+
 doc_gen

@@ -20,6 +20,8 @@ DOC_COUNTER=0
 DOC_INDENT_CHAR='    '
 DOC_INDENT_CONTENTS=''
 DOC_INDENT=''
+DOC_TABLE_ROW_COUNTER=0
+DOC_TABLE_ROW_LEN=0
 
 if [ "${DOC_FORMAT}" = "html" ]
 then
@@ -49,6 +51,12 @@ doc_code()            { doc_code_$DOC_FORMAT $@            ; }
 doc_splitter()        { doc_splitter_$DOC_FORMAT $@        ; }
 doc_link()            { doc_link_$DOC_FORMAT $@            ; }
 doc_image()           { doc_image_$DOC_FORMAT $@           ; }
+doc_table_start()     { doc_table_start_$DOC_FORMAT $@     ; }
+doc_table_new_row()   { doc_table_new_row_$DOC_FORMAT $@   ; }
+doc_table_cell()      { doc_table_cell_$DOC_FORMAT $@      ; }
+doc_table_end()       { doc_table_end_$DOC_FORMAT $@       ; }
+doc_b()               { doc_inl_b_$DOC_FORMAT $@           ; }
+doc_i()               { doc_inl_i_$DOC_FORMAT $@           ; }
 doc_inl_b()           { doc_inl_b_$DOC_FORMAT $@           ; }
 doc_inl_i()           { doc_inl_i_$DOC_FORMAT $@           ; }
 doc_gen()             { doc_gen_$DOC_FORMAT $@             ; }
@@ -129,7 +137,7 @@ doc_nlist_start_md()
 
 doc_nlist_entry_md()
 {
-	DOC_NLIST_COUNTER=$(expr $DOC_NLIST_COUNTER + 1)
+	DOC_NLIST_COUNTER=$(expr ${DOC_NLIST_COUNTER} + 1)
 	DOC_BODY_CODE="${DOC_BODY_CODE}${DOC_INDENT}${DOC_NLIST_COUNTER}. ${*}\n"
 }
 
@@ -181,6 +189,35 @@ doc_link_md()
 doc_image_md()
 {
 	DOC_BODY_CODE="${DOC_BODY_CODE}${DOC_INDENT}!\[${DOC_LINK_TEXT}\]\(${*}\)\n\n"
+}
+
+# Table
+
+doc_table_start_md()
+{
+		DOC_BODY_CODE="${DOC_BODY_CODE}| "
+}
+
+doc_table_new_row_md()
+{
+	if [ -z ${DOC_TABLE_ROW_COUNTER} ]
+	then
+		DOC_BODY_CODE="${DOC_BODY_CODE}\n| "
+	else
+		DOC_BODY_CODE="${DOC_BODY_CODE}\n--------\n| "
+	fi
+
+	DOC_TABLE_ROW_COUNTER=$(expr ${DOC_TABLE_ROW_COUNTER} + 1)
+}
+
+doc_table_cell_md()
+{
+	DOC_BODY_CODE="${DOC_BODY_CODE}${*} | "
+}
+
+doc_table_end_md()
+{
+	return
 }
 
 # Inline Formatting
@@ -443,6 +480,37 @@ doc_link_html()
 doc_image_html()
 {
 	DOC_BODY_CODE="${DOC_BODY_CODE}${DOC_INDENT}<img src=\"${*}\" alt=\"${DOC_LINK_TEXT}\">\n"
+}
+
+# Table
+
+doc_table_start_html()
+{
+	DOC_TABLE_ROW_COUNTER=0
+	DOC_BODY_CODE="${DOC_BODY_CODE}${DOC_INDENT}<table>\n${DOC_INDENT}${DOC_INDENT_CHAR}<tr>\n"
+	doc_indent_in
+}
+
+doc_table_new_row_html()
+{
+	DOC_BODY_CODE="${DOC_BODY_CODE}${DOC_INDENT}</tr>\n${DOC_INDENT}<tr>\n"
+	DOC_TABLE_ROW_COUNTER=$(expr ${DOC_TABLE_ROW_COUNTER} + 1)
+}
+
+doc_table_cell_html()
+{
+	if [ ${DOC_TABLE_ROW_COUNTER} = '0' ]
+	then
+		DOC_BODY_CODE="${DOC_BODY_CODE}${DOC_INDENT}${DOC_INDENT_CHAR}<th>${*}</th>\n"
+	else
+		DOC_BODY_CODE="${DOC_BODY_CODE}${DOC_INDENT}${DOC_INDENT_CHAR}<td>${*}</td>\n"
+	fi
+}
+
+doc_table_end_html()
+{
+	doc_indent_out
+	DOC_BODY_CODE="${DOC_BODY_CODE}${DOC_INDENT}${DOC_INDENT_CHAR}</tr>\n${DOC_INDENT}</table>\n"
 }
 
 # Inline Formatting
