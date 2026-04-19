@@ -6,8 +6,12 @@ Multidoc.sh is a collection of shell scripts that ease conversion between markup
 
 You need a POSIX compliant shell to run these scripts. On Windows, Git Bash will suffice.
 
-### Using Mutlidoc.sh
+### Usage
 
-Multidoc.sh documents are written in shell script. To include a Multidoc.sh template, include any file from the `templates/` subdirectory of this repository with a dot command (`.`). In `./sample.sh`, the line `. templates/nofrills.sh` includes the 'No Frills' template.
+#### Importing Mutlidoc.sh
+Most Multidoc.sh documents are written in shell script. To include a Multidoc.sh in your project, copy the `mutlidoc` directory in this repository's root directory into your project.
 
-Scripts that use Multidoc.sh output generated markup code to stdout. This output can be redirected to a file. For example, running the command `./sample.sh > sample.md` creates a Markdown file from the code in `sample.sh`. 
+You may integrate Multidoc.sh in your shell scripts with a dot command (.). For example, in `./sample.sh`, the line `. multidoc/templates/nofrills.sh` includes the 'No Frills' template.
+
+#### Script Execution
+Scripts that use Multidoc.sh output generated markup code to stdout. This output can be redirected to a file. For example, running the command `./examples/nofrills-sample.sh > sample.md` creates a Markdown file from the code in `./examples/nofrills-sample.sh`. 

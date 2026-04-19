@@ -38,9 +38,9 @@ Right here is a paragraph.
 
 --------
 
-\[Example link\]\(https://example.com/\)
+[Example link](https://example.com/)
 
-!\[Igni Logo\]\(https://avatars.githubusercontent.com/u/181029195\)
+![Igni Logo](https://avatars.githubusercontent.com/u/181029195)
 
 | Column 1 | Column 2 | Column 3 | 
 --------

@@ -2,7 +2,7 @@
 
 DOC_FORMAT='md'
 DOC_CONTENTS_ENABLE=1
-. templates/nofrills.sh
+. multidoc/templates/nofrills.sh
 
 doc_header 'Multidoc.sh Example'
 doc_subheader 'IGNI Project'

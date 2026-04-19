@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.5
+
+* Restructured file heirarchy. All templates now reside in `source/templates/` instead of `templates/`. Examples now reside in `examples/`
+* Added documentation
+* Updated and edited the 'Usage' section of `README.md` for clarity
+* Removed unneccessary backslashes from No Frills' generated Markdown links and images
+
 ## v0.4
 
 * Added tables
