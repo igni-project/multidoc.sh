@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.5.1
+
+* Implemented an 'indent' function in `multidoc/utils/indent.sh`
+
 ## v0.5
 
 * Restructured file heirarchy. All templates now reside in `source/templates/` instead of `templates/`. Examples now reside in `examples/`

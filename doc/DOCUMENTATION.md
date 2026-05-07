@@ -1,6 +1,6 @@
 # Documentation
 
-## Template Functions
+## Standard Functions
 
 ### doc_header
 ### doc_subheader
@@ -31,4 +31,7 @@
 ### doc_inl_b
 ### doc_inl_i
 ### doc_gen
+
+## Standard Variables
+
 
